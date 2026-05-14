@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # Build stage (Ubuntu Jammy based image)
-FROM maven:3.9.11-eclipse-temurin-21-jammy AS build
+FROM maven:3.9-eclipse-temurin-21-jammy AS build
 WORKDIR /app
 
 COPY pom.xml ./

@@ -37,7 +37,13 @@ public class SecurityConfig {
                 .authenticationProvider(authProvider)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/v1/auth/login", "/api/v1/auth/register", "/api/v1/auth/logout").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/tickets/public").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/tickets/public/track/**").permitAll()
                         .requestMatchers("/actuator/health").permitAll()
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html").permitAll()
                         .anyRequest().authenticated())
                 .headers(headers -> headers
                         .contentTypeOptions(withDefaults())

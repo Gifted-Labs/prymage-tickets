@@ -46,6 +46,14 @@ public class Ticket {
     @Column(name = "resolved_at")
     private OffsetDateTime resolvedAt;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "assigned_to")
+    private User assignedTo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_user_id")
+    private User customerUser;
+
     @PrePersist
     void onCreate() {
         OffsetDateTime now = OffsetDateTime.now();
@@ -77,4 +85,8 @@ public class Ticket {
     public OffsetDateTime getUpdatedAt() { return updatedAt; }
     public OffsetDateTime getResolvedAt() { return resolvedAt; }
     public void setResolvedAt(OffsetDateTime resolvedAt) { this.resolvedAt = resolvedAt; }
+    public User getAssignedTo() { return assignedTo; }
+    public void setAssignedTo(User assignedTo) { this.assignedTo = assignedTo; }
+    public User getCustomerUser() { return customerUser; }
+    public void setCustomerUser(User customerUser) { this.customerUser = customerUser; }
 }
